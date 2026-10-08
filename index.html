@@ -179,7 +179,7 @@ footer a{text-decoration:none;color:#fff}
 </div></div>
 <header><div class="wrap nav">
   <a class="marca" href="#inicio" aria-label="Studio Roset, inicio"><img src="assets/logo.jpg" alt="" width="48" height="48"><span>Studio Roset<small>Salón de belleza · Macul</small></span></a>
-  <nav class="menu" aria-label="Secciones"><a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a><a href="#videos">Videos</a><a href="#preguntas">Preguntas</a><a href="#contacto">Contacto</a></nav>
+  <nav class="menu" aria-label="Secciones"><a href="#servicios">Servicios</a><a href="#nosotros">Nosotros</a><a href="#videos">Videos</a><a href="#preguntas">Preguntas</a><a href="#fCot">Pide tu hora</a><a href="#contacto">Contacto</a></nav>
   <a class="btn btn-wa" href="https://wa.me/56974010310?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20y%20quiero%20pedir%20una%20hora" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>WhatsApp</a>
 </div></header>
 
@@ -193,6 +193,7 @@ footer a{text-decoration:none;color:#fff}
     <div class="botones">
       <a class="btn" href="tel:+56974010310"><svg fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><use href="#tel"/></svg>Llamar ahora</a>
       <a class="btn btn-wa" href="https://wa.me/56974010310?text=Hola%2C%20vi%20su%20p%C3%A1gina%20web%20y%20quiero%20pedir%20una%20hora" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#wa"/></svg>Agendar por WhatsApp</a>
+      <a class="btn" href="#fCot">Pedir hora en línea</a>
     </div>
     <ul class="sellos"><li><svg aria-hidden="true"><use href="#ok"/></svg>4,8 ★ en Google</li><li><svg aria-hidden="true"><use href="#ok"/></svg>58 reseñas</li><li><svg aria-hidden="true"><use href="#ok"/></svg>Agenda por WhatsApp</li></ul>
   </div>
@@ -259,6 +260,7 @@ footer a{text-decoration:none;color:#fff}
   <form id="fCot" class="aparece" novalidate>
     <h3>Pide tu hora</h3>
     <label>Tu nombre<input id="cNombre" autocomplete="name"></label>
+    <label>Tu teléfono (opcional)<input id="cTel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+56 9"></label>
     <label>¿Qué necesitas?
       <select id="cServ"><option value="">— Elige uno —</option><option>Color y balayage</option><option>Corte y peinado</option><option>Alisados y tratamientos</option><option>Uñas</option><option>Otra consulta</option></select></label>
     <label>Día y hora que prefieres<input id="cDir" placeholder="Ej: sábado en la mañana"></label>
@@ -296,10 +298,10 @@ footer a{text-decoration:none;color:#fff}
   document.querySelectorAll("[data-s]").forEach(function(a){a.addEventListener("click",function(ev){ev.preventDefault();abrir("Hola, vi su página web y quiero pedir hora para: "+a.getAttribute("data-s"))})});
   var f=document.getElementById("fCot");
   if(f){f.addEventListener("submit",function(ev){ev.preventDefault();
-    var n=document.getElementById("cNombre").value.trim(),s=document.getElementById("cServ").value,d=document.getElementById("cDir").value.trim(),m=document.getElementById("cMsg").value.trim(),av=document.getElementById("cAviso");
+    var n=document.getElementById("cNombre").value.trim(),s=document.getElementById("cServ").value,d=document.getElementById("cDir").value.trim(),m=document.getElementById("cMsg").value.trim(),tel=document.getElementById("cTel").value.trim(),av=document.getElementById("cAviso");
     if(!s){av.textContent="Elige el servicio que necesitas.";return}
     av.textContent="";
-    var t="Hola"+(n?", soy "+n:"")+". Vi su página web y necesito: "+s+"."+(d?" Día y hora que prefieres: "+d+".":"")+(m?" "+m:"");
+    var t="Hola"+(n?", soy "+n:"")+". Vi su página web y necesito: "+s+"."+(d?" Día y hora que prefiero: "+d+".":"")+(tel?" Mi teléfono: "+tel+".":"")+(m?" "+m:"");
     abrir(t)})}
   var io="IntersectionObserver" in window?new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("visto");io.unobserve(x.target)}})},{threshold:.12}):null;
   document.querySelectorAll(".vid").forEach(function(b){var m=b.querySelector("video");function ver(){if(m){if(m.paused){document.querySelectorAll(".vid video").forEach(function(o){if(o!==m){o.pause();o.parentNode.classList.remove("on")}});m.play();b.classList.add("on")}else{m.pause();b.classList.remove("on")}return}if(b.classList.contains("on"))return;b.classList.add("on");var i=document.createElement("iframe");i.src=b.getAttribute("data-v");i.title="Video de Instagram";i.allow="autoplay; encrypted-media; picture-in-picture";i.setAttribute("allowfullscreen","");b.appendChild(i)}
